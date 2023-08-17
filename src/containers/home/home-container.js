@@ -18,6 +18,9 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Search from '../../components/search/search';
+import { addRuleset } from '../../actions/ruleset';
+import { handleAttribute } from '../../actions/attributes';
+import { handleDecision } from '../../actions/decisions';
 
 function readFile(file, cb) {
   // eslint-disable-next-line no-undef
@@ -37,7 +40,7 @@ class HomeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      uploadedFilesCount: 0, files: [], ruleset: [], uploadError: false, fileExist: false, message: {},
+      uploadedFilesCount: 0, files: [], ruleset: {}, uploadError: false, fileExist: false, message: {}, rule: {},
       ruleList: [
         {
           "id": "64ab972714c88c0d98ef7ce1",
@@ -829,6 +832,7 @@ class HomeContainer extends Component {
     this.handleUpload = this.handleUpload.bind(this);
     this.chooseDirectory = this.chooseDirectory.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   componentDidMount() {
@@ -850,7 +854,23 @@ class HomeContainer extends Component {
 
   handleSearch(value) {
     this.props.searchTxt(value);
-}
+  }
+
+  handleEdit(e, rule) {
+    e.preventDefault();
+    console.log(rule)
+    this.props.login();
+    this.props.uploadRuleset(rule);
+    // this.props.addRuleset(rule.name);
+
+    // for(let ele=0;ele<rule.attributes.length;ele++){
+    //   this.props.handleAttribute('ADD', rule.attributes[ele]);
+    // }
+    // for(let ele=0;ele<rule.decisions.length;ele++){
+    //   this.props.handleDecisions('ADD', rule.decisions[ele]);
+    // }
+    this.navigate('./ruleset');
+  }
 
   allowDrop(e) {
     e.preventDefault();
@@ -952,7 +972,7 @@ class HomeContainer extends Component {
       <td><p>{rule.type}</p></td>
       <td><p>{rule.status}</p></td>
       <td>
-        <a style={{ paddingRight: '20px' }} href="" ><FontAwesomeIcon icon={faPenToSquare} /></a>
+        <a href="" style={{ paddingRight: '20px' }} onClick={(e) => this.handleEdit(e, rule)} ><FontAwesomeIcon icon={faPenToSquare} /></a>
         <a href="" ><FontAwesomeIcon icon={faTrash} /></a>
       </td>
     </tr>)
@@ -1007,7 +1027,7 @@ class HomeContainer extends Component {
 HomeContainer.contextType = ApperanceContext;
 
 HomeContainer.propTypes = {
-  ruleset: PropTypes.array,
+  ruleset: PropTypes.object,
   uploadRuleset: PropTypes.func,
   login: PropTypes.func,
   loggedIn: PropTypes.bool,
@@ -1016,7 +1036,7 @@ HomeContainer.propTypes = {
 
 HomeContainer.defaultProps = {
   rulenames: [],
-  ruleset: [],
+  ruleset: {},
   uploadRuleset: () => false,
   login: () => false,
   loggedIn: false,

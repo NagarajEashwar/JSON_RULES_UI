@@ -6,10 +6,10 @@ import FooterLinks from '../footer/footer';
 import footerLinks from '../../data-objects/footer-links.json';
 import AppearanceContext from '../../context/apperance-context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faSquarePlus, faCloudArrowUp, faSliders } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSquarePlus, faCloudArrowUp, faSliders, faList } from '@fortawesome/free-solid-svg-icons';
 
 const navmenu = [{ name: 'Create Rules', navigate: './create-ruleset', iconClass: "icon", fontIcons: faSquarePlus, linkClass: 'navmenu'},
-                 { name: 'Upload Rules', navigate: './home', iconClass: "icon", fontIcons: faCloudArrowUp, linkClass: 'navmenu' },
+                 { name: 'Rules List', navigate: './home', iconClass: "icon", fontIcons: faList, linkClass: 'navmenu' },
                 { name: 'Appearance', navigate: './appearance', iconClass: "icon", fontIcons: faSliders, linkClass: 'navmenu'} ];
 class NavigationPanel extends Component {
 
@@ -26,6 +26,7 @@ class NavigationPanel extends Component {
     }
 
     handleNavLink(name) {
+        console.log(name);
         const history = createHashHistory();
         this.props.setActiveRulesetIndex(name);
         history.push('./ruleset');
