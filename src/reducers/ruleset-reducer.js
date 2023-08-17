@@ -22,7 +22,7 @@ function ruleset(state = initialState, action='') {
         case ActionTypes.UPLOAD_RULESET: {
 
             const { ruleset } = action.payload;
-            const rulesets = state.rulesets.concat(ruleset);
+            const rulesets = [ruleset];
              return { ...state, rulesets: cloneDeep(rulesets),  uploadedRules: cloneDeep(rulesets)}
         }
 

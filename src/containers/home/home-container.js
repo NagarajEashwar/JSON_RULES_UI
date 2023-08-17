@@ -19,6 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Search from '../../components/search/search';
 import Loader from '../../components/loader/loader';
+import { v4 as uuidv4 } from 'uuid';
 
 function readFile(file, cb) {
   // eslint-disable-next-line no-undef
@@ -37,6 +38,8 @@ class HomeContainer extends Component {
 
   constructor(props) {
     super(props);
+    // const uniqueId = uuidv4();
+    // console.log(uniqueId);
     this.state = {
       uploadedFilesCount: 0,loading: true, files: [], ruleset: {}, uploadError: false, fileExist: false, message: {}, rule: {},
       ruleList: []
@@ -73,6 +76,7 @@ class HomeContainer extends Component {
 
   handleEdit(e, rule) {
     e.preventDefault();
+    this.setState({rule: {...rule}});
     this.props.uploadRuleset(rule);
     console.log(rule);
     console.log(this.props.ruleset);
@@ -84,7 +88,8 @@ class HomeContainer extends Component {
     // for(let ele=0;ele<rule.decisions.length;ele++){
     //   this.props.handleDecisions('ADD', rule.decisions[ele]);
     // }
-    this.navigate('./ruleset');
+    const history = createHashHistory();
+    history.push('./ruleset');
   }
 
   allowDrop(e) {
