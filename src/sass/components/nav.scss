@@ -8,9 +8,9 @@
     position: fixed;
     padding: 0 10px 25px;
 
-    &.closed {
-      width: 40px;
-    }
+    // &.closed {
+    //   width: 40px;
+    // }
 
     &.open {
       width: $sideNavWidth;

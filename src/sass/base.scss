@@ -3,6 +3,13 @@
 @import './components/index.scss';
 @import './theme/index.scss';
 
+@font-face {
+    font-family: 'Electrolux Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Electrolux Sans'), url('../../assets/fonts/Electrolux\ Sans\ Regular.woff') format('woff');
+}
+
 h1 {
     color: blue;
 }
@@ -20,8 +27,8 @@ h1 {
     overflow-x: hidden;
 
     &.closed {
-        left: 100px;
-        width: calc(100% - 140px);
+        left: 50px;
+        width: calc(100% - 60px);
     }
 
     &.open {
