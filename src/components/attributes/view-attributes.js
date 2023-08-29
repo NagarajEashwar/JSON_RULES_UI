@@ -30,10 +30,10 @@ export const ViewOutcomes = ({items}) => {
     return (items.map((item, ind) => 
             (<div key={ind} className="view-attribute">
                 <div>
-                    Type
+                    Type: {item.type}
                 </div>
                 <div>
-                    {item.type}
+                    {JSON.stringify(item.params)}
                 </div>
             </div>))
     );

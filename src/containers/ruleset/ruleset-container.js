@@ -16,12 +16,12 @@ import { groupBy } from 'lodash/collection';
 import RuleErrorBoundary from '../../components/error/ruleset-error';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
-const tabs = [{name: 'Facts'}, {name: 'Decisions'}, {name: 'Validate'}, {name: 'Generate'}];
+const tabs = [{name: 'Attributes List'}, {name: 'Conditions'}, {name: 'Validate'}];
 class RulesetContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {activeTab: 'Facts', generateFlag: false };
+        this.state = {activeTab: 'Attributes List', generateFlag: false };
         this.generateFile = this.generateFile.bind(this);
         this.cancelAlert = this.cancelAlert.bind(this);
     }
@@ -74,9 +74,9 @@ class RulesetContainer extends Component {
           <PageTitle name={name} />
           <Tabs tabs={tabs} onConfirm={this.handleTab} activeTab={this.state.activeTab} />
           <div className="tab-page-container">
-              {this.state.activeTab === 'Facts' && <Attributes attributes={attributes} 
+              {this.state.activeTab === 'Attributes List' && <Attributes attributes={attributes} 
                 handleAttribute={this.props.handleAttribute }/>}
-              {this.state.activeTab === 'Decisions' && <Decisions decisions={indexedDecisions || []} attributes={attributes}
+              {this.state.activeTab === 'Conditions' && <Decisions decisions={indexedDecisions || []} attributes={attributes}
               handleDecisions={this.props.handleDecisions} outcomes={outcomes}/>}
               {this.state.activeTab === 'Validate' && <ValidateRules attributes={attributes} decisions={decisions} />}
               {this.state.activeTab === 'Generate' && <Banner message={message} ruleset={this.props.ruleset} onConfirm={this.generateFile}/> }

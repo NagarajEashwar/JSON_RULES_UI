@@ -59,7 +59,7 @@ class HomeContainer extends Component {
     const headers = {
       'Content-Type': 'application/json'
     };
-    axios.get('https://eg-demo-tickets-events-test-2.azurewebsites.net/api/GodBlessMicrosoftHttpTrigger1?code=0RyJFcbfnhVL_n_5x43dIhMwS48U5nIC8QK0cXHHneoBAzFuAWrHxA==', { headers })
+    axios.get('https://funcappeventdrivendev09.azurewebsites.net/api/Cache_Refresh00?code=nCP4vlkFu2sj1WTqfM_Tvi3qr-x8l3GG2QNZaqrTXlUZAzFuOZw2cw==', { headers })
       .then(data => {
         this.setState({ ruleList: data.data, loading: false })
         console.log(data);
